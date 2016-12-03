@@ -1,0 +1,22 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.ratpack:ratpack-gradle:1.4.4"
+    }
+}
+
+apply plugin: "io.ratpack.ratpack-groovy"
+apply plugin: "codenarc"
+apply plugin: "idea"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    //compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    runtime "org.slf4j:slf4j-simple:1.7.21"
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+}
