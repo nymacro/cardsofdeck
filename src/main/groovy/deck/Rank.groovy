@@ -23,4 +23,8 @@ enum Rank {
     Rank(char code) {
         this.code = code
     }
+
+    String toString() {
+        return "${code}"
+    }
 }

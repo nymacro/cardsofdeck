@@ -20,4 +20,10 @@ class CardTest extends Specification {
         deck == [Card.fromCode('AH'), Card.fromCode('2D'), Card.fromCode('3S')]
         deck.take(1)[0] == Card.fromCode('3S')
     }
+
+    def "deck toString"() {
+        def deck = Deck.fromString('AH,2D,3S')
+        expect:
+        deck.toString() == 'AH,2D,3S'
+    }
 }

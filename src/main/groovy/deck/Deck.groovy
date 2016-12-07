@@ -43,6 +43,10 @@ class Deck extends LinkedList<Card> {
         return deck
     }
 
+    String toString() {
+        this.join(",")
+    }
+
     Deck getPile(String id) {
         piles.computeIfAbsent(id) { k ->
             def deck = new Deck()

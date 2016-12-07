@@ -14,4 +14,8 @@ enum Suite {
     Suite(char code) {
         this.code = code
     }
+
+    String toString() {
+        return "${code}"
+    }
 }

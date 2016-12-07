@@ -16,7 +16,14 @@ repositories {
 }
 
 dependencies {
-    //compile 'org.codehaus.groovy:groovy-all:2.3.11'
-    runtime "org.slf4j:slf4j-simple:1.7.21"
+    // GORM dependencies
+    // compile "org.grails:grails-datastore-gorm-hibernate5:6.0.4.RELEASE"
+    // runtime "com.h2database:h2:1.4.192"
+    // runtime "org.apache.tomcat:tomcat-jdbc:8.5.0"
+    // runtime "org.apache.tomcat.embed:tomcat-embed-logging-log4j:8.5.0"
+    // runtime "org.slf4j:slf4j-api:1.7.10"
+
     testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+
+    runtime "org.slf4j:slf4j-simple:1.7.21"
 }

@@ -26,9 +26,6 @@ class Card {
     }
 
     String toString() {
-        return "Card{" +
-                "suit=" + suit +
-                ", rank=" + rank +
-                '}'
+        return "${rank}${suit}"
     }
 }
