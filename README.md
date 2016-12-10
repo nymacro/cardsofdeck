@@ -1,6 +1,6 @@
 # cardsofdeck
 
-A Groovy/Ratpack replacement implementation of deckofcardsapi.com
+A Groovy/Ratpack replacement implementation of [deckofcardsapi.com](http://deckofcardsapi.com)
 
 ## Build
 
@@ -10,7 +10,7 @@ A Groovy/Ratpack replacement implementation of deckofcardsapi.com
 
     $ ./gradlew run
 
-## Warning
+## NOTE
 
 While all care has been taken to try and implement the API faithfully,
 some differences may exist. This project is a small test application
