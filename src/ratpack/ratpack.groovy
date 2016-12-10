@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonProperty
 
 import static ratpack.groovy.Groovy.ratpack
 import deck.*
@@ -23,6 +24,7 @@ class PileResponse {
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class DeckResponse {
     boolean success
+    @JsonProperty("deck_id")
     String deckId
     boolean shuffled
     int remaining
@@ -63,6 +65,7 @@ ratpack {
             String deckId = Database.instance.create(Database.randomId(), deck)
             render json(new DeckResponse(success: true, deckId: deckId, shuffled: deck.shuffled, remaining: deck.size()))
         }
+
         path("new/shuffle") {
             String cards = request.queryParams['cards']
             Deck deck
@@ -76,6 +79,7 @@ ratpack {
             def deckId = Database.instance.create(Database.randomId(), deck)
             render json(new DeckResponse(success: true, deckId: deckId, shuffled: deck.shuffled, remaining: deck.size()))
         }
+
         path(":deckId/draw") {
             String deckId = pathTokens.deckId
             Deck deck
@@ -90,11 +94,13 @@ ratpack {
             def cards = deck.take(count)
             render json(new DeckResponse(success: true, deckId: deckId, shuffled: deck.shuffled, cards: cardsToResponse(cards), remaining: deck.size()))
         }
+
         path(":deckId/shuffle") {
             String deckId = pathTokens.deckId
             Deck deck = Database.instance.get(deckId).shuffle()
             render json(new DeckResponse(success: true, deckId: deckId, shuffled: deck.shuffled, remaining: deck.size()))
         }
+
         path(":deckId/pile/:pileName/add") {
             String deckId = pathTokens.deckId
             String pileName = pathTokens.pileName
@@ -102,11 +108,10 @@ ratpack {
             Deck deck = Database.instance.get(deckId)
             Deck pile = deck.getPile(pileName)
             pile.addAll(Deck.fromString(cards))
-            // this is inconsistent with deckofcardsapi.com
-            // TODO add remaining in piles
             render json(new DeckResponse(success: true, deckId: deckId, shuffled: deck.shuffled, remaining: deck.size(),
                 piles: pilesToResponse(deck.piles)))
         }
+
         path(":deckId/pile/:pileName/draw") {
             String deckId = pathTokens.deckId
             String pileName = pathTokens.pileName
@@ -114,8 +119,6 @@ ratpack {
             Deck pile = deck.getPile(pileName)
             int count = minmax(1, deck.size(), Integer.parseInt(request.queryParams['count'] ?: '0'))
             List<Card> cards = pile.take(count)
-            // this is inconsistent with deckofcardsapi.com
-            // TODO add remaining in piles
             render json(new DeckResponse(success: true, deckId: deckId, shuffled: deck.shuffled,
                 cards: cardsToResponse(cards), remaining: deck.size(), piles: pilesToResponse(deck.piles)))
         }
