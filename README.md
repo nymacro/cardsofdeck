@@ -1,6 +1,6 @@
 # cardsofdeck
 
-A Groovy/Ratpack replacement implementation of [deckofcardsapi.com](http://deckofcardsapi.com)
+A simple Groovy/Ratpack replacement implementation of [deckofcardsapi.com](http://deckofcardsapi.com) which has no persistent storage.
 
 ## Build
 
